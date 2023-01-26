@@ -2,13 +2,21 @@ import styled from "styled-components/native";
 
 export const ChecksContainer = styled.View`
  display: flex;
+ flex: 1;
+ flex-wrap: wrap;
  padding: 20px;
+`
+export const Line = styled.View`
+    margin: 10px 0px 10px 0px;
+    height: 1px;
+    background-color: #000;
+    align-self: stretch;
 `
 
 export const CheckContainer = styled.View`
   background-color: #fff;
-  border-radius: 5px;
   z-index: 0;
+  width: 100%;
   position: relative;
   margin-bottom: 20px;
 `
@@ -20,8 +28,6 @@ export const CheckHeader = styled.View`
     position: absolute;
     top: 0;
     left: 0;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,7 +47,5 @@ export const CheckFooter = styled.View`
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
     padding-bottom: 5px;
 `

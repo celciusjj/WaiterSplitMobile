@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 import Header from "./components/Header";
 import ModalForm from "./components/ModalForm";
 import Checks from "./components/Checks";
-import { OrdersProvider } from './context/OrdersProvider';
-import { View } from 'react-native';
+import { OrdersProvider } from "./context/OrdersProvider";
+import AddProductsButton from "./components/AddProductsButton";
 
 const App = () => {
     return (
@@ -11,6 +11,7 @@ const App = () => {
             <Header />
             <Checks />
             <ModalForm />
+            <AddProductsButton />
         </OrdersProvider>
     );
 };

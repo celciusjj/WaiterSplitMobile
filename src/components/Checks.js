@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import OrdersContext from '../context/OrdersProvider';
+import React, { useContext } from "react";
+import OrdersContext from "../context/OrdersProvider";
 import Check from "./Check";
 import { ChecksContainer } from "../styles/styledCheck";
-import { ScrollView } from 'react-native';
+import { ScrollView } from "react-native";
 
 const Checks = () => {
     const { orders } = useContext(OrdersContext);

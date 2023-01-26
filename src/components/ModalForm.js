@@ -4,9 +4,10 @@ import Icon from "react-native-vector-icons/FontAwesome"
 import RowIcon from "react-native-vector-icons/MaterialIcons"
 import { Input } from "../styles/styledBase";
 import { foodProducts } from "../utils/mocks";
-import OrdersContext from '../context/OrdersProvider';
+import OrdersContext from "../context/OrdersProvider";
 import { Text } from "../styles/styledBase";
 import { View, TouchableOpacity, Image } from "react-native";
+import Snackbar from "react-native-snackbar";
 
 const Modal = () => {
     const { orders, setOrders, setIsModal, isModal } = useContext(OrdersContext);
@@ -15,8 +16,6 @@ const Modal = () => {
     const [products] = useState(foodProducts);
     const [productName, setProductName] = useState(foodProducts[0].name);
     const [counter, setCounter] = useState(0);
-
-    console.log(isModal)
 
     useEffect(() => {
         let newProduct = foodProducts[counter];
@@ -41,8 +40,8 @@ const Modal = () => {
     }
 
     const onChangeProductInput = (e) => {
-        setProductName(e.target.value)
-        let productSelected = products.filter(item => (item.name).toLowerCase() === (e.target.value).toLowerCase());
+        setProductName(e)
+        let productSelected = products.filter(item => (item.name).toLowerCase() === (e).toLowerCase());
         if (productSelected.length > 0) setProductSelected(productSelected[0]);
     }
 
@@ -61,7 +60,21 @@ const Modal = () => {
                 }
             }
             setOrders(data)
+            Snackbar.show({
+                text: "Producto añadido: " +  productSelected.name,
+                duration: Snackbar.LENGTH_SHORT,
+            });
+        } else {
+            Snackbar.show({
+                text: "Ingrese el nombre del cliente",
+                duration: Snackbar.LENGTH_SHORT,
+            });
         }
+    }
+
+    const handleCloseModal = () => {
+        setClient("");
+        setIsModal(false)
     }
 
     return (
@@ -69,14 +82,14 @@ const Modal = () => {
         <ModalContainer>
             <ModalItem >
                 <ModalHeader>
-                    <Text fontSize={20} color={"#000"}>Registre el producto</Text>
+                    <Text fontSize={"20px"} color={"#000"}>Registre el producto</Text>
                 </ModalHeader>
                 <ModalBody>
                     <Input
                         value={productName}
-                        onChange={onChangeProductInput}
+                        onChangeText={onChangeProductInput}
                         width={"200px"}
-                        placeholder="Ingrese el producto">
+                        placeholder="Busque el producto">
                     </Input>
 
                     <View style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
@@ -94,7 +107,7 @@ const Modal = () => {
                     <Input
                         onChangeText={(e) => setClient(e.toUpperCase())}
                         width={"200px"}
-                        placeholder="Nombres y apellidos del cliente">
+                        placeholder="Cliente">
                     </Input>
 
                     <ModalConfirmBtn
@@ -105,8 +118,10 @@ const Modal = () => {
                 </ModalBody>
 
                 <ModalCloseBtn
-                    onPress={() => setIsModal(false)}>
-                    <Text><Icon style={{ marginBottom: "-3px" }} name="close" size={20} /></Text>
+                    onPress={handleCloseModal}>
+                    <Text>
+                        <Icon style={{ marginBottom: "-3px" }} name="close" size={20} />
+                    </Text>
                 </ModalCloseBtn>
 
             </ModalItem>
