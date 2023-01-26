@@ -97,7 +97,7 @@ const Modal = () => {
                             onPress={handlePreviousProduct}>
                             <RowIcon color={"#000"} name="navigate-before" size={40} />
                         </TouchableOpacity>
-                        <Image style={{ width: 100, height: 100, margin: 20 }} source={{ uri: productSelected.url }}></Image>
+                        <Image alt="producto" style={{ width: 100, height: 100, margin: 20 }} source={{ uri: productSelected.url }}></Image>
                         <TouchableOpacity
                             onPress={handleNextProduct}>
                             <RowIcon color={"#000"} name="navigate-next" size={40} />
